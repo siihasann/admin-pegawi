@@ -121,7 +121,7 @@ class EmployeesResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('ranks.name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('work_location.name')
+                Tables\Columns\TextColumn::make('work_locations.name')
                     ->searchable(),
             ])
             ->filters([
@@ -140,34 +140,11 @@ class EmployeesResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ])
             ->headerActions([
-                Action::make('print')
-                    ->label('Cetak Daftar Pegawai')
+                Action::make('print_preview')
+                    ->label('Preview')
                     ->icon('heroicon-o-printer')
-                    ->action(function ($livewire) {
-                        $query = static::getModel()::query();
-                        
-                        // Apply current filters
-                        // $table = $livewire->getTable();
-                        // foreach ($table->getFilters() as $filter) {
-                        //     $query->when(
-                        //         $filter->isVisible() && $filter->hasValue(),
-                        //         fn ($query) => $filter->apply($query, $filter->getValue())
-                        //     );
-                        // }
-    
-                        // Get filtered data
-                        $employees = $query->with(['jabatan', 'units', 'eselon', 'work_locations'])->get();
-    
-                        // Generate PDF
-                        $pdf = Pdf::loadView('pdfs.employee-list', [
-                            'employees' => $employees,
-                            'date' => now()->format('d/m/Y'),
-                        ]);
-    
-                        return response()->streamDownload(function () use ($pdf) {
-                            echo $pdf->output();
-                        }, 'daftar-pegawai-' . now()->format('Y-m-d') . '.pdf');
-                    }),
+                    ->url(fn () => route('employees.print-preview'))
+                    ->openUrlInNewTab(),
             ]);
     }
     

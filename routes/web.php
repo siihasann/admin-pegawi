@@ -16,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/employees/print-preview', function () {
+    $employees = \App\Models\Employees::with(['jabatan', 'eselon', 'units', 'ranks', 'work_locations'])->get();
+    return view('pdf.employees-print', ['employees' => $employees]);
+})->name('employees.print-preview');

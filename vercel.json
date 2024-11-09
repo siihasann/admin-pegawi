@@ -6,10 +6,12 @@
     },
     "routes": [
         {
-            "src":"/build(.*)",
-            "dest":"/public/build/assets"
-
-
+            "src": "/css/(.*)",
+            "dest": "/public/css"
+        },
+        {
+            "src": "/js/(.*)",
+            "dest": "/public/js"
         },
         {
             "src": "/(.*)",
@@ -22,7 +24,7 @@
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "true",
-        "APP_URL": "https://crud-pegawai-sable.vercel.app",
+        "APP_URL": "https://crud-pegawai-pns.vercel.app",
         "APP_KEY": "base64:VWT8fBbgA/ixIY0uGl+mumgrZGDFC0WVTmLMhzxrcN4=",
 
         "APP_CONFIG_CACHE": "/tmp/config.php",

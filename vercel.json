@@ -6,46 +6,10 @@
     },
     "routes": [
         {
-            "src": "/admin/(.*)",
-            "dest": "/public/build/"
-        },
-        {
-            "src": "/admin",
-            "dest": "/api/index.php",
-            "headers": {
-                "Cache-Control": "no-cache, no-store, must-revalidate"
-            }
-        },
-        {
-            "src": "/admin/(.*)",
-            "dest": "/api/index.php",
-            "headers": {
-                "Cache-Control": "no-cache, no-store, must-revalidate"
-            }
-        },
-        {
-            "src": "/filament/(.*)",
-            "dest": "/api/index.php"
-        },
-        {
-            "src": "/livewire/message/(.*)",
-            "dest": "/api/index.php"
-        },
-        {
-            "src": "/livewire/upload-file",
-            "dest": "/api/index.php"
-        },
-        {
-            "src": "/livewire/preview-file/(.*)",
-            "dest": "/api/index.php"
-        },
-        {
-            "src": "/livewire/(.*)",
-            "dest": "/api/index.php"
-        },
-        {
-            "src": "/(css|js)/(.*)",
-            "dest": "/public/$1/$2"
+            "src":"/build(.*)",
+            "dest":"/public/build/assets"
+
+
         },
         {
             "src": "/(.*)",

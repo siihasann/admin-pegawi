@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // Cek jika lingkungan aplikasi adalah produksi
+        if (env('APP_ENV') == 'production') {
+            // Memaksa penggunaan HTTPS pada semua URL
+            URL::forceScheme('https');
+        }
     }
 }

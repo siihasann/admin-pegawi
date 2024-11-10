@@ -6,16 +6,61 @@
     },
     "routes": [
         {
-            "src": "/css/(.*)",
-            "dest": "/public/css/$1"
+            "src": "/build/(.*)",
+            "dest": "/public/build/$1"
         },
         {
-            "src": "/js/(.*)",
-            "dest": "/public/js/$1"
+            "src": "/admin",
+            "dest": "/api/index.php",
+            "headers": {
+                "Cache-Control": "no-cache, no-store, must-revalidate"
+            }
+        },
+        {
+            "src": "/admin/(.*)",
+            "dest": "/api/index.php",
+            "headers": {
+                "Cache-Control": "no-cache, no-store, must-revalidate"
+            }
+        },
+        {
+            "src": "/filament/(.*)",
+            "dest": "/api/index.php"
+        },
+        {
+            "src": "/livewire/message/(.*)",
+            "dest": "/api/index.php"
+        },
+        {
+            "src": "/livewire/upload-file",
+            "dest": "/api/index.php"
+        },
+        {
+            "src": "/livewire/preview-file/(.*)",
+            "dest": "/api/index.php"
+        },
+        {
+            "src": "/livewire/(.*)",
+            "dest": "/api/index.php"
+        },
+        {
+            "src": "/(css|js)/(.*)",
+            "dest": "/public/$1/$2"
         },
         {
             "src": "/(.*)",
             "dest": "/api/index.php"
+        }
+    ],
+    "headers": [
+        {
+            "source": "/(.*)",
+            "headers": [
+                { "key": "Access-Control-Allow-Origin", "value": "*" },
+                { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT" },
+                { "key": "Access-Control-Allow-Headers", "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" },
+                { "key": "Access-Control-Allow-Credentials", "value": "true" }
+            ]
         }
     ],
     "public": true,
